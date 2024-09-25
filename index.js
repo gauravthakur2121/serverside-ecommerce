@@ -9,6 +9,7 @@ const MongoStore = require('connect-mongo');
 const passportConfig = require('./config/passport');
 const Product =require('./models/Product')
 const User=require('./models/User')
+require('dotenv').config()
 
 // This is the cause of lazy loading 
 
@@ -19,11 +20,15 @@ const User=require('./models/User')
 // const isAuthenticated=require('./middleware/auth')
 
 const app = express();
+// const DB_URL="mongodb://127.0.0.1:27017/e-commerce";
+ const DB_URL="mongodb+srv://shishodiag12:"+ encodeURIComponent("thakur@212121##") +"@cluster0.srwp1.mongodb.net/mynodeproject?retryWrites=true&w=majority"
 
-mongoose.connect('mongodb://localhost:27017/e-commerce', {
+
+
+mongoose.connect(DB_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-});
+}); 
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -38,8 +43,8 @@ app.use(session({
     secret: 'your-secret-key',
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/e-commerce' }),
-    cookie: { secure: false } 
+    // store: MongoStore.create({ mongoUrl: 'mongodb://localhost:27017/e-commerce' }),
+    // cookie: { secure: false } 
 }));
 
 app.use(flash());
@@ -140,5 +145,6 @@ app.use((err, req, res, next) => {
 
 // Define your routes here
 
-const PORT = process.env.PORT || 5000;
+ const PORT = process.env.PORT || 5000;
+ 
 app.listen(PORT, () => console.log(`Server running on port http://localhost:${PORT}`));
