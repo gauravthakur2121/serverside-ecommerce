@@ -11,14 +11,6 @@ const Product =require('./models/Product')
 const User=require('./models/User')
 require('dotenv').config()
 
-// This is the cause of lazy loading 
-
-// const profileRoutes=require('./routes/profileRoutes')
-// const userRoutes = require('./routes/userRoutes');
-// const adminRoutes = require('./routes/adminRoutes');
-// const cartRoutes = require('./routes/cartRoutes');
-// const isAuthenticated=require('./middleware/auth')
-
 const app = express();
 // const DB_URL="mongodb://127.0.0.1:27017/e-commerce";
  const DB_URL="mongodb+srv://shishodiag12:"+ encodeURIComponent("thakur@212121##") +"@cluster0.srwp1.mongodb.net/mynodeproject?retryWrites=true&w=majority"
